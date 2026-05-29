@@ -1,0 +1,48 @@
+{
+  "name": "technical-service-setup",
+  "version": "1.0.0",
+  "description": "Установщик системы управления заявками на ТО",
+  "main": "installer.js",
+  "bin": "installer.js",
+  "scripts": {
+    "build": "pkg installer.js --targets node18-win-x64 --output TechnicalServiceSetup.exe",
+    "build:icon": "pkg installer.js --targets node18-win-x64 --output TechnicalServiceSetup.exe --public",
+    "start": "node installer.js",
+    "dev": "node installer.js",
+    "test": "npm run test:installer && npm run test:e2e",
+    "test:installer": "node tests/installer.test.js",
+    "test:e2e": "node tests/e2e.test.js",
+    "test:unit": "node tests/unit.test.js",
+    "test:clean": "npm run test:installer -- --clean",
+    "pretest": "echo 'Подготовка к тестированию...'",
+    "posttest": "echo 'Тестирование завершено!'"
+  },
+  "pkg": {
+    "scripts": [
+      "installer.js"
+    ],
+    "assets": [
+      "src/**/*",
+      "index.html",
+      "server.js",
+      "start.bat",
+      "INFO.txt"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ],
+    "outputPath": "dist"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  },
+  "keywords": [
+    "technical-service",
+    "maintenance",
+    "requests",
+    "installer",
+    "windows"
+  ],
+  "author": "Technical Service System",
+  "license": "MIT"
+}
